@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f4f9ff" />
-  <title>Bozor Bot — Qoraqalpog‘iston</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3f8fe">
+  <title>Bazar — Bozor Bot</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <main class="app-shell">
@@ -17,12 +17,12 @@
       <h1>Bazar</h1>
       <div class="top-actions">
         <button class="icon-button chevron" aria-label="Til menyusi" onclick="toggleLanguage()">⌄</button>
-        <button class="icon-button dots" aria-label="Menyu" onclick="showToast('Menyu tez orada qo‘shiladi')">⋮</button>
+        <button class="icon-button dots" aria-label="Menyu" onclick="showToast('Menyu')">⋮</button>
       </div>
     </header>
 
     <section class="brand-row">
-      <div class="brand-mark" aria-hidden="true"><span>⌾</span></div>
+      <div class="brand-mark" aria-label="Bozor Bot logosi"><span>⌾</span></div>
       <div class="brand-copy">
         <strong>Bozor Bot</strong>
         <span>Q O R A Q A L P O G ‘ I S T O N</span>
@@ -36,29 +36,35 @@
     </section>
 
     <div class="content">
-      <section class="promo" aria-label="Reklama taklifi">
+      <section class="promo" aria-label="Haftalik reklama">
         <div class="promo-copy">
           <span class="eyebrow">TAKLIF</span>
           <h2>Haftalik reklama</h2>
           <p>Brendingiz bosh sahifada doimiy ko‘rinib tursin.</p>
         </div>
-        <button class="details" onclick="showToast('Reklama joylashtirish oynasi ochildi')">Batafsil</button>
-        <div class="carousel-dots"><b></b><b></b><b class="selected"></b></div>
+        <button class="details" onclick="showToast('Reklama joylashtirish')">Batafsil</button>
+        <div class="carousel-dots" aria-label="Slaydlar"><b></b><b></b><b class="selected"></b></div>
       </section>
+
       <button class="advert-link" onclick="showToast('Reklama joylashtirish')"><span>♧</span> Reklama joylashtirish</button>
 
       <section class="section-block">
         <div class="section-heading"><h2>Yangi mahsulotlar</h2><button onclick="showToast('Barcha mahsulotlar')">Barchasi</button></div>
         <div class="product-scroller">
-          <article class="product-card" onclick="showToast('Bozor Bot tanlandi')">
-            <div class="product-image bot-image"><span class="date">19-sen</span><div class="mini-bot">⌾</div><strong>Bozor Bot</strong><small>Davom etish uchun Telegram orqali telefon<br>raqamingizni yuboring.</small></div>
+          <article class="product-card" onclick="showToast('Bozor Bot')">
+            <div class="product-image bot-image">
+              <span class="date">19-sen</span>
+              <div class="mini-bot">⌾</div>
+              <strong>Bozor Bot</strong>
+              <small>Davom etish uchun Telegram orqali telefon<br>raqamingizni yuboring.</small>
+            </div>
             <div class="product-info"><h3>Aaaaaa</h3><strong>20 000 000 so‘m</strong></div>
           </article>
-          <article class="product-card" onclick="showToast('Mishka tanlandi')">
+          <article class="product-card" onclick="showToast('Mishka')">
             <div class="product-image mouse-image"><span class="date">17-sen</span><span class="lenovo">Lenovo</span></div>
             <div class="product-info"><h3>Mishka</h3><strong>100 000 so‘m</strong></div>
           </article>
-          <article class="product-card third" onclick="showToast('Mahsulot tanlandi')">
+          <article class="product-card third" onclick="showToast('Barcha mahsulotlar')">
             <div class="product-image abstract-image"><span class="date">16-sen</span></div>
             <div class="product-info"><h3>Hammisini ko‘rish</h3></div>
           </article>
@@ -72,14 +78,14 @@
     </div>
 
     <nav class="bottom-nav" aria-label="Pastki navigatsiya">
-      <button class="nav-item active" onclick="activateNav(this)"><span>⌂</span></button>
-      <button class="nav-item" onclick="activateNav(this)"><span>⌕</span></button>
-      <button class="add-button" onclick="showToast('Yangi e’lon qo‘shish')">+</button>
-      <button class="nav-item" onclick="activateNav(this)"><span>▢</span></button>
-      <button class="nav-item" onclick="activateNav(this)"><span>♙</span></button>
+      <button class="nav-item active" onclick="activateNav(this)" aria-label="Bosh sahifa"><span>⌂</span></button>
+      <button class="nav-item" onclick="activateNav(this)" aria-label="Qidiruv"><span>⌕</span></button>
+      <button class="add-button" onclick="showToast('Yangi e’lon qo‘shish')" aria-label="E’lon qo‘shish">+</button>
+      <button class="nav-item" onclick="activateNav(this)" aria-label="E’lonlar"><span>▢</span></button>
+      <button class="nav-item" onclick="activateNav(this)" aria-label="Profil"><span>♙</span></button>
     </nav>
   </main>
   <div id="toast" role="status"></div>
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
