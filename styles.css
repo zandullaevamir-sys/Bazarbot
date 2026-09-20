@@ -1,538 +1,140 @@
-* { box-sizing: border-box; }
-:root {
-  --bg: #eef4fb;
-  --panel: #f7f9fb;
-  --white: #ffffff;
-  --line: #dfe9f2;
-  --text: #1d2d3a;
-  --muted: #778ea0;
-  --blue: #2a6c96;
-  --blue-soft: #dfeef9;
-  --orange: #ff8d2c;
-  --green: #165a49;
-}
+!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3f8fe">
+<title>Bazar — Bozor Bot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+<main class="app-shell">
 
-html, body {
-  margin: 0;
-  min-height: 100%;
-  background: #dfeaf2;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  color: var(--text);
-}
+  <header class="topbar">
+    <button class="icon-button" aria-label="Yopish" onclick="showToast('Xush kelibsiz!')">×</button>
+    <h1>Bazar</h1>
+    <div class="top-actions">
+      <button class="icon-button chevron" aria-label="Til menyusi" onclick="toggleLanguage()">⌄</button>
+      <button class="icon-button dots" aria-label="Menyu" onclick="showToast('Menyu')">⋮</button>
+    </div>
+  </header>
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
+  <section class="brand-row">
+    <div class="brand-mark" aria-label="Bozor Bot logosi">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 8h12l-1 12H7L6 8z"></path>
+        <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+        <circle cx="9.5" cy="12.5" r="1"></circle>
+        <circle cx="14.5" cy="12.5" r="1"></circle>
+      </svg>
+    </div>
+    <div class="brand-copy">
+      <strong>Bozor Bot</strong>
+      <span>QORAQALPOG‘ISTON</span>
+    </div>
+    <div class="language-switcher" role="group" aria-label="Til tanlash">
+      <button class="active" onclick="setLanguage('O‘ZB', this)">O‘ZB</button>
+      <button onclick="setLanguage('РУС', this)">РУС</button>
+      <button onclick="setLanguage('QR', this)">QR</button>
+    </div>
+    <button class="hamburger" aria-label="Asosiy menyu" onclick="showToast('Asosiy menyu')"><i></i><i></i><i></i></button>
+  </section>
 
-button {
-  border: 0;
-  background: none;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-}
+  <div class="content">
 
-.app-shell {
-  width: 100%;
-  max-width: 430px;
-  min-height: 100vh;
-  background: var(--bg);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 35px rgba(17, 35, 52, 0.08);
-}
+    <section class="promo" aria-label="Haftalik reklama">
+      <div class="promo-copy">
+        <span class="eyebrow">TAKLIF</span>
+        <h2>Haftalik reklama</h2>
+        <p>Brendingiz bosh sahifada doimiy ko‘rinib tursin.</p>
+      </div>
+      <button class="details" onclick="showToast('Reklama joylashtirish')">Batafsil</button>
+      <div class="carousel-dots" aria-label="Slaydlar"><b></b><b></b><b class="selected"></b></div>
+    </section>
 
-.topbar {
-  height: 84px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 18px 0 14px;
-  background: rgba(255,255,255,0.18);
-  border-bottom: 1px solid rgba(160,179,194,0.35);
-}
+    <button class="advert-link" onclick="showToast('Reklama joylashtirish')">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11v2a2 2 0 0 0 2 2h2l4 4V5L7 9H5a2 2 0 0 0-2 2z"></path>
+        <path d="M16 8a4 4 0 0 1 0 8"></path>
+      </svg>
+      Reklama joylashtirish
+    </button>
 
-.icon-button {
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  font-size: 42px;
-  line-height: 1;
-  color: #1d2d3a;
-  font-weight: 300;
-}
+    <section class="section-block">
+      <div class="section-heading">
+        <h2>Yangi mahsulotlar</h2>
+        <button onclick="showToast('Barcha mahsulotlar')">Barchasi</button>
+      </div>
+      <div class="product-scroller">
 
-.topbar h1 {
-  margin: 0;
-  font-size: 31px;
-  line-height: 1;
-  letter-spacing: -1px;
-  color: #1d2d3a;
-  font-weight: 800;
-}
+        <article class="product-card" onclick="showToast('Bozor Bot')">
+          <div class="product-image bot-image">
+            <span class="date">19-sen</span>
+            <div class="mini-bot">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8h12l-1 12H7L6 8z"></path>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+              </svg>
+            </div>
+            <strong>Bozor Bot</strong>
+            <small>Davom etish uchun Telegram orqali telefon<br>raqamingizni yuboring.</small>
+          </div>
+          <div class="product-info"><h3>Aaaaaa</h3><strong>20 000 000 so‘m</strong></div>
+        </article>
 
-.top-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+        <article class="product-card" onclick="showToast('Mishka')">
+          <div class="product-image mouse-image"><span class="date">17-sen</span><span class="lenovo">Lenovo</span></div>
+          <div class="product-info"><h3>Mishka</h3><strong>100 000 so‘m</strong></div>
+        </article>
 
-.chevron {
-  font-size: 28px;
-  transform: translateY(-4px);
-}
+        <article class="product-card third" onclick="showToast('Barcha mahsulotlar')">
+          <div class="product-image abstract-image">
+            <span class="date">16-sen</span>
+            <span class="round-arrow">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </div>
+          <div class="product-info"><h3>Hammisini ko‘rish</h3></div>
+        </article>
 
-.dots {
-  font-size: 25px;
-  transform: translateY(-2px);
-}
+      </div>
+    </section>
 
-.brand-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 18px 14px;
-  background: rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(160,179,194,0.35);
-}
+    <section class="section-block services">
+      <h2>Xizmatlar</h2>
+      <button class="all-services" onclick="showToast('Barcha xizmatlar')">
+        <span class="round-arrow">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </span>
+        <strong>Hammasini ko‘rish</strong>
+      </button>
+    </section>
 
-.brand-mark {
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #ff9b3e, #f4701a);
-  display: grid;
-  place-items: center;
-  color: #1d5c40;
-  font-size: 38px;
-  box-shadow: inset 0 -8px rgba(0,0,0,0.06);
-}
+  </div>
 
-.brand-copy {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 6px;
-}
+  <nav class="bottom-nav" aria-label="Pastki navigatsiya">
+    <button class="nav-item active" onclick="activateNav(this)" aria-label="Bosh sahifa">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path></svg>
+    </button>
+    <button class="nav-item" onclick="activateNav(this)" aria-label="Qidiruv">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+    </button>
+    <button class="add-button" onclick="showToast('Yangi e’lon qo‘shish')" aria-label="E’lon qo‘shish">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+    </button>
+    <button class="nav-item" onclick="activateNav(this)" aria-label="E’lonlar">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="2"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2"></path></svg>
+    </button>
+    <button class="nav-item" onclick="activateNav(this)" aria-label="Profil">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"></path></svg>
+    </button>
+  </nav>
 
-.brand-copy strong {
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: -0.5px;
-  color: #1d2d3a;
-}
-
-.brand-copy span {
-  font-size: 9px;
-  letter-spacing: 2px;
-  font-weight: 700;
-  color: var(--blue);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.language-switcher {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  background: var(--blue-soft);
-  padding: 4px 6px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-}
-
-.language-switcher button {
-  border-radius: 999px;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #4d7188;
-}
-
-.language-switcher .active {
-  background: var(--blue);
-  color: #fff;
-  box-shadow: 0 6px 14px rgba(42, 108, 150, 0.22);
-}
-
-.hamburger {
-  width: 26px;
-  height: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: 6px;
-}
-
-.hamburger i {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: #5f7a8a;
-  border-radius: 3px;
-}
-
-.content {
-  padding: 18px 14px 110px;
-}
-
-.promo {
-  position: relative;
-  min-height: 218px;
-  border-radius: 28px;
-  background: linear-gradient(110deg, #2d6987 0%, #6ab1d5 100%);
-  overflow: hidden;
-  padding: 18px 18px 16px;
-  box-shadow: 0 10px 22px rgba(61, 111, 148, 0.18);
-}
-
-.promo-copy {
-  position: relative;
-  z-index: 1;
-}
-
-.eyebrow {
-  display: inline-block;
-  border-radius: 12px;
-  padding: 7px 12px;
-  font-size: 11px;
-  letter-spacing: 1px;
-  font-weight: 800;
-  color: #ffd2b5;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.04);
-}
-
-.promo h2 {
-  margin: 18px 0 10px;
-  font-size: 32px;
-  letter-spacing: -1.2px;
-  line-height: 1.02;
-  font-weight: 800;
-  color: #fff;
-  max-width: 240px;
-}
-
-.promo p {
-  margin: 0;
-  max-width: 250px;
-  font-size: 14px;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.96);
-}
-
-.details {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  padding: 11px 22px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.85);
-  color: var(--blue);
-  font-weight: 800;
-  font-size: 14px;
-  box-shadow: 0 8px 15px rgba(26, 82, 118, 0.15);
-}
-
-.carousel-dots {
-  position: absolute;
-  right: 16px;
-  bottom: 12px;
-  display: flex;
-  gap: 8px;
-}
-
-.carousel-dots b {
-  display: block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.45);
-}
-
-.carousel-dots .selected {
-  width: 18px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.95);
-}
-
-.advert-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  margin: 16px auto 12px;
-  color: var(--blue);
-  font-size: 15px;
-  font-weight: 700;
-}
-
-.advert-link span {
-  font-size: 24px;
-  transform: rotate(-10deg);
-  display: inline-block;
-}
-
-.section-block {
-  margin-top: 18px;
-}
-
-.section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 4px 2px 12px;
-}
-
-.section-block h2 {
-  margin: 0;
-  font-size: 28px;
-  letter-spacing: -1px;
-  color: #1e2d3a;
-}
-
-.section-heading button {
-  color: var(--blue);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.product-scroller {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding-bottom: 8px;
-  scrollbar-width: none;
-}
-
-.product-scroller::-webkit-scrollbar { display: none; }
-
-.product-card {
-  flex: 0 0 200px;
-  background: rgba(255,255,255,0.4);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 7px 16px rgba(44, 86, 120, 0.05);
-}
-
-.product-image {
-  position: relative;
-  height: 160px;
-  overflow: hidden;
-}
-
-.bot-image {
-  background: linear-gradient(135deg, #f4f7f8, #edf2f4);
-}
-
-.date {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.8);
-  font-size: 11px;
-  font-weight: 700;
-  color: #324d5d;
-}
-
-.mini-bot {
-  position: absolute;
-  left: 16px;
-  top: 16px;
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #ff972e, #f76d1d);
-  box-shadow: inset 0 -8px rgba(0,0,0,0.06);
-  display: grid;
-  place-items: center;
-  color: #195b42;
-  font-size: 32px;
-}
-
-.bot-image strong {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 28px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 800;
-  color: #1d2d39;
-}
-
-.bot-image small {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 12px;
-  font-size: 10px;
-  color: #7b8f9c;
-  line-height: 1.4;
-  text-align: center;
-}
-
-.mouse-image {
-  background: linear-gradient(135deg, #d7edf2, #c3d7dd);
-}
-
-.mouse-image::before {
-  content: "";
-  position: absolute;
-  inset: 36px 58px 18px 58px;
-  background: rgba(255,255,255,0.7);
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 16px rgba(148,173,184,0.38), inset 0 0 0 32px rgba(228,244,247,0.8);
-  transform: rotate(9deg);
-}
-
-.mouse-image::after {
-  content: "Lenovo";
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  color: rgba(65,93,106,0.75);
-  font-size: 20px;
-  font-weight: 700;
-  transform: rotate(-10deg);
-}
-
-.abstract-image {
-  background: linear-gradient(135deg, #d6edf0, #95adc0);
-}
-
-.product-info {
-  padding: 12px 14px 16px;
-}
-
-.product-info h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  letter-spacing: -0.5px;
-  color: #1d2d3a;
-}
-
-.product-info strong {
-  font-size: 18px;
-  letter-spacing: -0.6px;
-  color: #1d2d3a;
-}
-
-.services {
-  margin-top: 28px;
-}
-
-.all-services {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 18px 10px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.38);
-  border: 1px solid var(--line);
-  box-shadow: 0 6px 16px rgba(66, 103, 140, 0.04);
-}
-
-.round-arrow {
-  width: 54px;
-  height: 54px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.85);
-  border: 1px solid var(--line);
-  color: var(--blue);
-  font-size: 30px;
-  font-weight: 700;
-}
-
-.all-services strong {
-  font-size: 18px;
-  color: #213b4e;
-}
-
-.bottom-nav {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 16px;
-  height: 78px;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid rgba(174,189,202,0.7);
-  border-radius: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 14px;
-  box-shadow: 0 12px 20px rgba(65,92,120,0.08);
-  backdrop-filter: blur(10px);
-}
-
-.nav-item {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  color: #7d8b96;
-  font-size: 24px;
-  border-radius: 12px;
-}
-
-.nav-item.active {
-  background: #eaf4ff;
-  color: var(--blue);
-}
-
-.add-button {
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #43a7ea, #2c7ab9);
-  color: #fff;
-  border: 8px solid rgba(255,255,255,0.9);
-  font-size: 41px;
-  line-height: 1;
-  font-weight: 300;
-  transform: translateY(-18px);
-  box-shadow: 0 12px 24px rgba(42,118,176,0.18);
-}
-
-#toast {
-  position: fixed;
-  left: 50%;
-  bottom: 114px;
-  transform: translateX(-50%) translateY(12px);
-  background: rgba(21,39,52,0.9);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 999px;
-  font-size: 12px;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.2s ease;
-  z-index: 20;
-  white-space: nowrap;
-}
-
-#toast.visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-@media (min-width: 430px) {
-  body {
-    padding: 0;
-  }
-}
+</main>
+<div id="toast" role="status"></div>
+<script src="script.js?v=4"></script>
+</body>
+</html>
