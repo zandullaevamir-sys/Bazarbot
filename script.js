@@ -1,28 +1,43 @@
-function showToast(message){
+let toastTimer;
+const tg = window.Telegram?.WebApp;
+
+if (tg) {
+  tg.ready();
+  tg.expand();
+  tg.setHeaderColor('#f3f8fe');
+  tg.setBackgroundColor('#f3f8fe');
+}
+
+function showToast(message) {
   const toast = document.getElementById('toast');
-  if(!toast) return;
+  if (!toast) return;
   toast.textContent = message;
-  toast.classList.add('show');
-  clearTimeout(window.__toastTimer);
-  window.__toastTimer = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 1800);
+  toast.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('visible'), 1500);
 }
 
-function setLanguage(label, btn){
-  document.querySelectorAll('.language-switcher button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  showToast('Til: ' + label);
+function closeApp() {
+  if (tg) tg.close();
+  else showToast('Xush kelibsiz!');
 }
 
-function toggleLanguage(){
-  const buttons = Array.from(document.querySelectorAll('.language-switcher button'));
-  const activeIndex = buttons.findIndex(b => b.classList.contains('active'));
-  const next = buttons[(activeIndex + 1) % buttons.length];
-  setLanguage(next.textContent, next);
+function toggleLanguage() {
+  const buttons = [...document.querySelectorAll('.language-switcher button')];
+  const active = buttons.findIndex(button => button.classList.contains('active'));
+  const next = (active + 1) % buttons.length;
+  buttons.forEach((button, index) => button.classList.toggle('active', index === next));
+  showToast('Til o‘zgardi');
 }
 
-function activateNav(btn){
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function setLanguage(language, button) {
+  document.querySelectorAll('.language-switcher button').forEach(item => item.classList.remove('active'));
+  button.classList.add('active');
+  showToast(`${language} tanlandi`);
+}
+
+function activateNav(button) {
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+  button.classList.add('active');
+  showToast('Bo‘lim tanlandi');
 }
