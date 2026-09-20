@@ -1,91 +1,140 @@
-<!doctype html>
+!doctype html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f3f8fe">
-  <title>Bazar — Bozor Bot</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3f8fe">
+<title>Bazar — Bozor Bot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-  <main class="app-shell">
-    <header class="topbar">
-      <button class="icon-button" aria-label="Yopish" onclick="showToast('Xush kelibsiz!')">×</button>
-      <h1>Bazar</h1>
-      <div class="top-actions">
-        <button class="icon-button chevron" aria-label="Til menyusi" onclick="toggleLanguage()">⌄</button>
-        <button class="icon-button dots" aria-label="Menyu" onclick="showToast('Menyu')">⋮</button>
-      </div>
-    </header>
+<main class="app-shell">
 
-    <section class="brand-row">
-      <div class="brand-mark" aria-label="Bozor Bot logosi"><span>⌾</span></div>
-      <div class="brand-copy">
-        <strong>Bozor Bot</strong>
-        <span>Q O R A Q A L P O G ‘ I S T O N</span>
+  <header class="topbar">
+    <button class="icon-button" aria-label="Yopish" onclick="showToast('Xush kelibsiz!')">×</button>
+    <h1>Bazar</h1>
+    <div class="top-actions">
+      <button class="icon-button chevron" aria-label="Til menyusi" onclick="toggleLanguage()">⌄</button>
+      <button class="icon-button dots" aria-label="Menyu" onclick="showToast('Menyu')">⋮</button>
+    </div>
+  </header>
+
+  <section class="brand-row">
+    <div class="brand-mark" aria-label="Bozor Bot logosi">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 8h12l-1 12H7L6 8z"></path>
+        <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+        <circle cx="9.5" cy="12.5" r="1"></circle>
+        <circle cx="14.5" cy="12.5" r="1"></circle>
+      </svg>
+    </div>
+    <div class="brand-copy">
+      <strong>Bozor Bot</strong>
+      <span>QORAQALPOG‘ISTON</span>
+    </div>
+    <div class="language-switcher" role="group" aria-label="Til tanlash">
+      <button class="active" onclick="setLanguage('O‘ZB', this)">O‘ZB</button>
+      <button onclick="setLanguage('РУС', this)">РУС</button>
+      <button onclick="setLanguage('QR', this)">QR</button>
+    </div>
+    <button class="hamburger" aria-label="Asosiy menyu" onclick="showToast('Asosiy menyu')"><i></i><i></i><i></i></button>
+  </section>
+
+  <div class="content">
+
+    <section class="promo" aria-label="Haftalik reklama">
+      <div class="promo-copy">
+        <span class="eyebrow">TAKLIF</span>
+        <h2>Haftalik reklama</h2>
+        <p>Brendingiz bosh sahifada doimiy ko‘rinib tursin.</p>
       </div>
-      <div class="language-switcher" role="group" aria-label="Til tanlash">
-        <button class="active" onclick="setLanguage('O‘ZB', this)">O‘ZB</button>
-        <button onclick="setLanguage('РУС', this)">РУС</button>
-        <button onclick="setLanguage('QR', this)">QR</button>
-      </div>
-      <button class="hamburger" aria-label="Asosiy menyu" onclick="showToast('Asosiy menyu')"><i></i><i></i><i></i></button>
+      <button class="details" onclick="showToast('Reklama joylashtirish')">Batafsil</button>
+      <div class="carousel-dots" aria-label="Slaydlar"><b></b><b></b><b class="selected"></b></div>
     </section>
 
-    <div class="content">
-      <section class="promo" aria-label="Haftalik reklama">
-        <div class="promo-copy">
-          <span class="eyebrow">TAKLIF</span>
-          <h2>Haftalik reklama</h2>
-          <p>Brendingiz bosh sahifada doimiy ko‘rinib tursin.</p>
-        </div>
-        <button class="details" onclick="showToast('Reklama joylashtirish')">Batafsil</button>
-        <div class="carousel-dots" aria-label="Slaydlar"><b></b><b></b><b class="selected"></b></div>
-      </section>
+    <button class="advert-link" onclick="showToast('Reklama joylashtirish')">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11v2a2 2 0 0 0 2 2h2l4 4V5L7 9H5a2 2 0 0 0-2 2z"></path>
+        <path d="M16 8a4 4 0 0 1 0 8"></path>
+      </svg>
+      Reklama joylashtirish
+    </button>
 
-      <button class="advert-link" onclick="showToast('Reklama joylashtirish')"><span>♧</span> Reklama joylashtirish</button>
+    <section class="section-block">
+      <div class="section-heading">
+        <h2>Yangi mahsulotlar</h2>
+        <button onclick="showToast('Barcha mahsulotlar')">Barchasi</button>
+      </div>
+      <div class="product-scroller">
 
-      <section class="section-block">
-        <div class="section-heading"><h2>Yangi mahsulotlar</h2><button onclick="showToast('Barcha mahsulotlar')">Barchasi</button></div>
-        <div class="product-scroller">
-          <article class="product-card" onclick="showToast('Bozor Bot')">
-            <div class="product-image bot-image">
-              <span class="date">19-sen</span>
-              <div class="mini-bot">⌾</div>
-              <strong>Bozor Bot</strong>
-              <small>Davom etish uchun Telegram orqali telefon<br>raqamingizni yuboring.</small>
+        <article class="product-card" onclick="showToast('Bozor Bot')">
+          <div class="product-image bot-image">
+            <span class="date">19-sen</span>
+            <div class="mini-bot">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8h12l-1 12H7L6 8z"></path>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+              </svg>
             </div>
-            <div class="product-info"><h3>Aaaaaa</h3><strong>20 000 000 so‘m</strong></div>
-          </article>
-          <article class="product-card" onclick="showToast('Mishka')">
-            <div class="product-image mouse-image"><span class="date">17-sen</span><span class="lenovo">Lenovo</span></div>
-            <div class="product-info"><h3>Mishka</h3><strong>100 000 so‘m</strong></div>
-          </article>
-          <article class="product-card third" onclick="showToast('Barcha mahsulotlar')">
-            <div class="product-image abstract-image"><span class="date">16-sen</span></div>
-            <div class="product-info"><h3>Hammisini ko‘rish</h3></div>
-          </article>
-        </div>
-      </section>
+            <strong>Bozor Bot</strong>
+            <small>Davom etish uchun Telegram orqali telefon<br>raqamingizni yuboring.</small>
+          </div>
+          <div class="product-info"><h3>Aaaaaa</h3><strong>20 000 000 so‘m</strong></div>
+        </article>
 
-      <section class="section-block services">
-        <h2>Xizmatlar</h2>
-        <button class="all-services" onclick="showToast('Barcha xizmatlar')"><span class="round-arrow">→</span><strong>Hammasini ko‘rish</strong></button>
-      </section>
-    </div>
+        <article class="product-card" onclick="showToast('Mishka')">
+          <div class="product-image mouse-image"><span class="date">17-sen</span><span class="lenovo">Lenovo</span></div>
+          <div class="product-info"><h3>Mishka</h3><strong>100 000 so‘m</strong></div>
+        </article>
 
-    <nav class="bottom-nav" aria-label="Pastki navigatsiya">
-      <button class="nav-item active" onclick="activateNav(this)" aria-label="Bosh sahifa"><span>⌂</span></button>
-      <button class="nav-item" onclick="activateNav(this)" aria-label="Qidiruv"><span>⌕</span></button>
-      <button class="add-button" onclick="showToast('Yangi e’lon qo‘shish')" aria-label="E’lon qo‘shish">+</button>
-      <button class="nav-item" onclick="activateNav(this)" aria-label="E’lonlar"><span>▢</span></button>
-      <button class="nav-item" onclick="activateNav(this)" aria-label="Profil"><span>♙</span></button>
-    </nav>
-  </main>
-  <div id="toast" role="status"></div>
-  <script src="script.js?v=3"></script>
+        <article class="product-card third" onclick="showToast('Barcha mahsulotlar')">
+          <div class="product-image abstract-image">
+            <span class="date">16-sen</span>
+            <span class="round-arrow">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </div>
+          <div class="product-info"><h3>Hammisini ko‘rish</h3></div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section-block services">
+      <h2>Xizmatlar</h2>
+      <button class="all-services" onclick="showToast('Barcha xizmatlar')">
+        <span class="round-arrow">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </span>
+        <strong>Hammasini ko‘rish</strong>
+      </button>
+    </section>
+
+  </div>
+
+  <nav class="bottom-nav" aria-label="Pastki navigatsiya">
+    <button class="nav-item active" onclick="activateNav(this)" aria-label="Bosh sahifa">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path></svg>
+    </button>
+    <button class="nav-item" onclick="activateNav(this)" aria-label="Qidiruv">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+    </button>
+    <button class="add-button" onclick="showToast('Yangi e’lon qo‘shish')" aria-label="E’lon qo‘shish">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+    </button>
+    <button class="nav-item" onclick="activateNav(this)" aria-label="E’lonlar">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="2"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2"></path></svg>
+    </button>
+    <button class="nav-item" onclick="activateNav(this)" aria-label="Profil">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"></path></svg>
+    </button>
+  </nav>
+
+</main>
+<div id="toast" role="status"></div>
+<script src="script.js?v=4"></script>
 </body>
-</html>
+        </html>
