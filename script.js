@@ -1,22 +1,28 @@
-let toastTimer;
-function showToast(message) {
+function showToast(message){
   const toast = document.getElementById('toast');
+  if(!toast) return;
   toast.textContent = message;
-  toast.classList.add('visible');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('visible'), 2200);
+  toast.classList.add('show');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 1800);
 }
-function setLanguage(language, button) {
-  document.querySelectorAll('.language-switcher button').forEach(item => item.classList.remove('active'));
-  button.classList.add('active');
-  showToast(`${language} tili tanlandi`);
+
+function setLanguage(label, btn){
+  document.querySelectorAll('.language-switcher button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast('Til: ' + label);
 }
-function toggleLanguage() {
-  const switcher = document.querySelector('.language-switcher');
-  switcher.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+function toggleLanguage(){
+  const buttons = Array.from(document.querySelectorAll('.language-switcher button'));
+  const activeIndex = buttons.findIndex(b => b.classList.contains('active'));
+  const next = buttons[(activeIndex + 1) % buttons.length];
+  setLanguage(next.textContent, next);
 }
-function activateNav(button) {
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-  button.classList.add('active');
-  showToast('Bo‘lim tanlandi');
+
+function activateNav(btn){
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 }
