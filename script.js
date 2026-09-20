@@ -1,43 +1,52 @@
-let toastTimer;
-const tg = window.Telegram?.WebApp;
+const searchInput = document.getElementById('searchInput');
+const productCards = [...document.querySelectorAll('.product-card')];
+const addButtons = [...document.querySelectorAll('.add-btn')];
+const toast = document.getElementById('toast');
+const cartCount = document.querySelector('.cart-count');
 
-if (tg) {
-  tg.ready();
-  tg.expand();
-  tg.setHeaderColor('#f3f8fe');
-  tg.setBackgroundColor('#f3f8fe');
-}
+let cartTotal = Number(cartCount.textContent || 0);
 
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
+const showToast = (message) => {
   toast.textContent = message;
-  toast.classList.add('visible');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('visible'), 1500);
-}
+  toast.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 1200);
+};
 
-function closeApp() {
-  if (tg) tg.close();
-  else showToast('Xush kelibsiz!');
-}
+searchInput.addEventListener('input', (e) => {
+  const value = e.target.value.trim().toLowerCase();
 
-function toggleLanguage() {
-  const buttons = [...document.querySelectorAll('.language-switcher button')];
-  const active = buttons.findIndex(button => button.classList.contains('active'));
-  const next = (active + 1) % buttons.length;
-  buttons.forEach((button, index) => button.classList.toggle('active', index === next));
-  showToast('Til o‘zgardi');
-}
+  productCards.forEach((card) => {
+    const name = card.dataset.name.toLowerCase();
+    const match = name.includes(value);
+    card.style.display = match ? 'block' : 'none';
+  });
+});
 
-function setLanguage(language, button) {
-  document.querySelectorAll('.language-switcher button').forEach(item => item.classList.remove('active'));
-  button.classList.add('active');
-  showToast(`${language} tanlandi`);
-}
+addButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    cartTotal += 1;
+    cartCount.textContent = String(cartTotal);
+    showToast(`${button.dataset.name} savatga qo‘shildi`);
+  });
+});
 
-function activateNav(button) {
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-  button.classList.add('active');
-  showToast('Bo‘lim tanlandi');
-}
+const chips = [...document.querySelectorAll('.chip')];
+chips.forEach((chip) => {
+  chip.addEventListener('click', () => {
+    chips.forEach((item) => item.classList.remove('active'));
+    chip.classList.add('active');
+  });
+});
+
+const navItems = [...document.querySelectorAll('.nav-item')];
+navItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    navItems.forEach((nav) => nav.classList.remove('active'));
+    if (!item.classList.contains('add-item')) {
+      item.classList.add('active');
+    }
+  });
+});

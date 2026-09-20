@@ -1,48 +1,335 @@
 <!doctype html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#f3f8fe">
-  <meta name="description" content="Bozor Bot — Qoraqalpog‘iston marketplace">
-  <title>Bazar — Bozor Bot</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#f5f7fb" />
+  <title>Bazar Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body>
-  <main class="app-shell">
+  <div class="app-shell">
     <header class="topbar">
-      <button class="icon-button" aria-label="Yopish" onclick="closeApp()">×</button>
-      <h1>Bazar</h1>
-      <div class="top-actions"><button class="icon-button chevron" onclick="toggleLanguage()">⌄</button><button class="icon-button dots" onclick="showToast('Menyu')">⋮</button></div>
+      <button class="circle-btn" aria-label="Ochirish">☰</button>
+      <div class="brand-wrap">
+        <div class="logo-badge">B</div>
+        <div>
+          <div class="brand-title">Bazar Bot</div>
+          <div class="brand-subtitle">Qoraqalpog‘iston</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="circle-btn" aria-label="Bildirishnoma">🔔</button>
+        <button class="cart-btn" aria-label="Savat">
+          🛒
+          <span class="cart-count">2</span>
+        </button>
+      </div>
     </header>
 
-    <section class="brand-row">
-      <div class="brand-mark" aria-label="Bozor Bot logosi"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><circle cx="9.5" cy="12.5" r="1"/><circle cx="14.5" cy="12.5" r="1"/></svg></div>
-      <div class="brand-copy"><strong>Bozor Bot</strong><span>QORAQALPOG‘ISTON</span></div>
-      <div class="language-switcher"><button class="active" onclick="setLanguage('O‘ZB',this)">O‘ZB</button><button onclick="setLanguage('РУС',this)">РУС</button><button onclick="setLanguage('QR',this)">QR</button></div>
-      <button class="hamburger" onclick="showToast('Asosiy menyu')"><i></i><i></i><i></i></button>
-    </section>
+    <main class="content">
+      <section class="hero-card">
+        <div class="hero-top">
+          <div>
+            <div class="eyebrow">Yangi chegirma</div>
+            <h1>Bozordagi eng yaxshi tanlov</h1>
+          </div>
+          <button class="pill-btn">Batafsil</button>
+        </div>
 
-    <div class="content">
-      <section class="promo"><div class="promo-copy"><span class="eyebrow">TAKLIF</span><h2>Haftalik reklama</h2><p>Brendingiz bosh sahifada doimiy ko‘rinib tursin.</p></div><button class="details" onclick="showToast('Reklama joylashtirish')">Batafsil</button><div class="carousel-dots"><b></b><b></b><b class="selected"></b></div></section>
-      <button class="advert-link" onclick="showToast('Reklama joylashtirish')">🔊 Reklama joylashtirish</button>
+        <div class="promo-stack">
+          <div class="promo-badge">-30%</div>
+          <div class="promo-product">
+            <div class="promo-image">
+              <div class="pack pack-one"></div>
+              <div class="pack pack-two"></div>
+            </div>
+            <div class="promo-copy">
+              <div class="mini-label">Premium</div>
+              <strong>Smart Fit Kompleksi</strong>
+              <span>890 000 so‘m</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section class="section-block"><div class="section-heading"><h2>Yangi mahsulotlar</h2><button onclick="showToast('Barcha mahsulotlar')">Barchasi</button></div><div class="product-scroller">
-        <article class="product-card" onclick="showToast('Bozor Bot')"><div class="product-image bot-image"><span class="date">19-sen</span><div class="mini-bot">⌾</div><strong>Bozor Bot</strong><small>Davom etish uchun Telegram orqali telefon<br>raqamingizni yuboring.</small></div><div class="product-info"><h3>Aaaaaa</h3><strong>20 000 000 so‘m</strong></div></article>
-        <article class="product-card" onclick="showToast('Mishka')"><div class="product-image mouse-image"><span class="date">17-sen</span><span class="lenovo">Lenovo</span></div><div class="product-info"><h3>Mishka</h3><strong>100 000 so‘m</strong></div></article>
-        <article class="product-card" onclick="showToast('Barcha mahsulotlar')"><div class="product-image abstract-image"><span class="date">16-sen</span><span class="round-arrow">→</span></div><div class="product-info"><h3>Hammisini ko‘rish</h3></div></article>
-      </div></section>
+      <section class="search-box">
+        <span>⌕</span>
+        <input type="text" id="searchInput" placeholder="Mahsulotlar qidirish" />
+      </section>
 
-      <section class="section-block services"><h2>Xizmatlar</h2><button class="all-services" onclick="showToast('Barcha xizmatlar')"><span class="round-arrow">→</span><strong>Hammasini ko‘rish</strong></button></section>
-    </div>
+      <section class="category-row" aria-label="Kategoriyalar">
+        <button class="chip active">Barchasi</button>
+        <button class="chip">Vitamin</button>
+        <button class="chip">Sport</button>
+        <button class="chip">Sog‘liq</button>
+        <button class="chip">Uy</button>
+      </section>
 
-    <nav class="bottom-nav"><button class="nav-item active" onclick="activateNav(this)" aria-label="Bosh sahifa">⌂</button><button class="nav-item" onclick="activateNav(this)" aria-label="Qidiruv">⌕</button><button class="add-button" onclick="showToast('Yangi e’lon qo‘shish')" aria-label="E’lon qo‘shish">+</button><button class="nav-item" onclick="activateNav(this)" aria-label="E’lonlar">▢</button><button class="nav-item" onclick="activateNav(this)" aria-label="Profil">♙</button></nav>
-  </main>
-  <div id="toast" role="status"></div>
-  <script src="script.js?v=6"></script>
+      <section class="section-head">
+        <h2>Mahsulotlar</h2>
+        <button>Hammasi</button>
+      </section>
+
+      <section class="product-grid" id="productGrid">
+        <article class="product-card" data-name="Smart Fit Gold">
+          <div class="product-visual visual-a">
+            <span class="tag">Hit</span>
+          </div>
+          <div class="product-info">
+            <h3>Smart Fit Gold</h3>
+            <div class="rating">★★★★★ <span>4.9</span></div>
+            <div class="price-row">
+              <strong>680 000 so‘m</strong>
+              <button class="add-btn" data-name="Smart Fit Gold">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Daily Balance">
+          <div class="product-visual visual-b">
+            <span class="tag alt">Yangi</span>
+          </div>
+          <div class="product-info">
+            <h3>Daily Balance</h3>
+            <div class="rating">★★★★★ <span>4.8</span></div>
+            <div class="price-row">
+              <strong>520 000 so‘m</strong>
+              <button class="add-btn" data-name="Daily Balance">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Go Power Shake">
+          <div class="product-visual visual-c">
+            <span class="tag">-20%</span>
+          </div>
+          <div class="product-info">
+            <h3>Go Power Shake</h3>
+            <div class="rating">★★★★★ <span>4.7</span></div>
+            <div class="price-row">
+              <strong>440 000 so‘m</strong>
+              <button class="add-btn" data-name="Go Power Shake">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Beauty Glow">
+          <div class="product-visual visual-d">
+            <span class="tag alt">Top</span>
+          </div>
+          <div class="product-info">
+            <h3>Beauty Glow</h3>
+            <div class="rating">★★★★★ <span>4.9</span></div>
+            <div class="price-row">
+              <strong>390 000 so‘m</strong>
+              <button class="add-btn" data-name="Beauty Glow">+</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section-head compact">
+        <h2>Trenddagi toifalar</h2>
+      </section>
+
+      <section class="category-cards">
+        <div class="mini-card">
+          <div class="mini-icon green">⚕</div>
+          <div>
+            <strong>Salomatlik</strong>
+            <small>140 ta mahsulot</small>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon blue">🏃</div>
+          <div>
+            <strong>Sport</strong>
+            <small>96 ta mahsulot</small>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon purple">✨</div>
+          <div>
+            <strong>Go‘zallik</strong>
+            <small>72 ta mahsulot</small>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active">⌂</button>
+      <button class="nav-item">⌕</button>
+      <button class="nav-item add-item">+</button>
+      <button class="nav-item">♡</button>
+      <button class="nav-item">👤</button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast">Mahsulot savatga qo‘shildi</div>
+
+  <script src="script.js?v=8"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
