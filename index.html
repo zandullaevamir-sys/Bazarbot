@@ -1,335 +1,38 @@
 <!doctype html>
-<html lang="uz">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="theme-color" content="#f5f7fb" />
-  <title>Bazar Bot</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>Random Joke Generator</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <button class="circle-btn" aria-label="Ochirish">☰</button>
-      <div class="brand-wrap">
-        <div class="logo-badge">B</div>
-        <div>
-          <div class="brand-title">Bazar Bot</div>
-          <div class="brand-subtitle">Qoraqalpog‘iston</div>
-        </div>
+  <main class="app-shell">
+    <section class="joke-card" aria-labelledby="page-title">
+      <div class="badge">😂 Daily Laugh</div>
+      <h1 id="page-title">Random Joke Generator</h1>
+      <p class="subtitle">Need a quick laugh? Get a fresh joke from the internet.</p>
+
+      <div id="joke" class="joke-box" aria-live="polite">
+        <p class="loading">Click the button to load a joke.</p>
       </div>
+
       <div class="actions">
-        <button class="circle-btn" aria-label="Bildirishnoma">🔔</button>
-        <button class="cart-btn" aria-label="Savat">
-          🛒
-          <span class="cart-count">2</span>
+        <button id="new-joke" class="primary-button" type="button">
+          <span aria-hidden="true">🎲</span>
+          Tell me a joke
+        </button>
+        <button id="copy-joke" class="secondary-button" type="button" disabled>
+          <span aria-hidden="true">📋</span>
+          Copy
         </button>
       </div>
-    </header>
 
-    <main class="content">
-      <section class="hero-card">
-        <div class="hero-top">
-          <div>
-            <div class="eyebrow">Yangi chegirma</div>
-            <h1>Bozordagi eng yaxshi tanlov</h1>
-          </div>
-          <button class="pill-btn">Batafsil</button>
-        </div>
-
-        <div class="promo-stack">
-          <div class="promo-badge">-30%</div>
-          <div class="promo-product">
-            <div class="promo-image">
-              <div class="pack pack-one"></div>
-              <div class="pack pack-two"></div>
-            </div>
-            <div class="promo-copy">
-              <div class="mini-label">Premium</div>
-              <strong>Smart Fit Kompleksi</strong>
-              <span>890 000 so‘m</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="search-box">
-        <span>⌕</span>
-        <input type="text" id="searchInput" placeholder="Mahsulotlar qidirish" />
-      </section>
-
-      <section class="category-row" aria-label="Kategoriyalar">
-        <button class="chip active">Barchasi</button>
-        <button class="chip">Vitamin</button>
-        <button class="chip">Sport</button>
-        <button class="chip">Sog‘liq</button>
-        <button class="chip">Uy</button>
-      </section>
-
-      <section class="section-head">
-        <h2>Mahsulotlar</h2>
-        <button>Hammasi</button>
-      </section>
-
-      <section class="product-grid" id="productGrid">
-        <article class="product-card" data-name="Smart Fit Gold">
-          <div class="product-visual visual-a">
-            <span class="tag">Hit</span>
-          </div>
-          <div class="product-info">
-            <h3>Smart Fit Gold</h3>
-            <div class="rating">★★★★★ <span>4.9</span></div>
-            <div class="price-row">
-              <strong>680 000 so‘m</strong>
-              <button class="add-btn" data-name="Smart Fit Gold">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-name="Daily Balance">
-          <div class="product-visual visual-b">
-            <span class="tag alt">Yangi</span>
-          </div>
-          <div class="product-info">
-            <h3>Daily Balance</h3>
-            <div class="rating">★★★★★ <span>4.8</span></div>
-            <div class="price-row">
-              <strong>520 000 so‘m</strong>
-              <button class="add-btn" data-name="Daily Balance">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-name="Go Power Shake">
-          <div class="product-visual visual-c">
-            <span class="tag">-20%</span>
-          </div>
-          <div class="product-info">
-            <h3>Go Power Shake</h3>
-            <div class="rating">★★★★★ <span>4.7</span></div>
-            <div class="price-row">
-              <strong>440 000 so‘m</strong>
-              <button class="add-btn" data-name="Go Power Shake">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-name="Beauty Glow">
-          <div class="product-visual visual-d">
-            <span class="tag alt">Top</span>
-          </div>
-          <div class="product-info">
-            <h3>Beauty Glow</h3>
-            <div class="rating">★★★★★ <span>4.9</span></div>
-            <div class="price-row">
-              <strong>390 000 so‘m</strong>
-              <button class="add-btn" data-name="Beauty Glow">+</button>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section class="section-head compact">
-        <h2>Trenddagi toifalar</h2>
-      </section>
-
-      <section class="category-cards">
-        <div class="mini-card">
-          <div class="mini-icon green">⚕</div>
-          <div>
-            <strong>Salomatlik</strong>
-            <small>140 ta mahsulot</small>
-          </div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-icon blue">🏃</div>
-          <div>
-            <strong>Sport</strong>
-            <small>96 ta mahsulot</small>
-          </div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-icon purple">✨</div>
-          <div>
-            <strong>Go‘zallik</strong>
-            <small>72 ta mahsulot</small>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <nav class="bottom-nav">
-      <button class="nav-item active">⌂</button>
-      <button class="nav-item">⌕</button>
-      <button class="nav-item add-item">+</button>
-      <button class="nav-item">♡</button>
-      <button class="nav-item">👤</button>
-    </nav>
-  </div>
-
-  <div id="toast" class="toast">Mahsulot savatga qo‘shildi</div>
-
-  <script src="script.js?v=8"></script>
+      <p id="status" class="status" role="status"></p>
+      <p class="source">Powered by <a href="https://jokeapi.dev/" target="_blank" rel="noreferrer">JokeAPI</a></p>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

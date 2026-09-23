@@ -1,52 +1,75 @@
-const searchInput = document.getElementById('searchInput');
-const productCards = [...document.querySelectorAll('.product-card')];
-const addButtons = [...document.querySelectorAll('.add-btn')];
-const toast = document.getElementById('toast');
-const cartCount = document.querySelector('.cart-count');
+const jokeElement = document.getElementById("joke");
+const newJokeButton = document.getElementById("new-joke");
+const copyButton = document.getElementById("copy-joke");
+const statusElement = document.getElementById("status");
 
-let cartTotal = Number(cartCount.textContent || 0);
+const API_URL = "https://v2.jokeapi.dev/joke/Any?safe-mode";
+let currentJoke = "";
 
-const showToast = (message) => {
-  toast.textContent = message;
-  toast.classList.add('show');
-  clearTimeout(window.toastTimer);
-  window.toastTimer = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 1200);
-};
+function setStatus(message = "") {
+  statusElement.textContent = message;
+}
 
-searchInput.addEventListener('input', (e) => {
-  const value = e.target.value.trim().toLowerCase();
+function renderJoke(data) {
+  if (data.type === "single") {
+    currentJoke = data.joke;
+    jokeElement.innerHTML = `<p>${escapeHtml(data.joke)}</p>`;
+    return;
+  }
 
-  productCards.forEach((card) => {
-    const name = card.dataset.name.toLowerCase();
-    const match = name.includes(value);
-    card.style.display = match ? 'block' : 'none';
-  });
-});
+  currentJoke = `${data.setup}\n\n${data.delivery}`;
+  jokeElement.innerHTML = `
+    <div>
+      <p class="setup">${escapeHtml(data.setup)}</p>
+      <p class="delivery">${escapeHtml(data.delivery)}</p>
+    </div>
+  `;
+}
 
-addButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    cartTotal += 1;
-    cartCount.textContent = String(cartTotal);
-    showToast(`${button.dataset.name} savatga qo‘shildi`);
-  });
-});
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
-const chips = [...document.querySelectorAll('.chip')];
-chips.forEach((chip) => {
-  chip.addEventListener('click', () => {
-    chips.forEach((item) => item.classList.remove('active'));
-    chip.classList.add('active');
-  });
-});
+async function getRandomJoke() {
+  newJokeButton.disabled = true;
+  copyButton.disabled = true;
+  setStatus("Loading a fresh joke...");
+  jokeElement.innerHTML = '<p class="loading">Finding something funny...</p>';
 
-const navItems = [...document.querySelectorAll('.nav-item')];
-navItems.forEach((item) => {
-  item.addEventListener('click', () => {
-    navItems.forEach((nav) => nav.classList.remove('active'));
-    if (!item.classList.contains('add-item')) {
-      item.classList.add('active');
-    }
-  });
-});
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error("The joke service is unavailable.");
+
+    const data = await response.json();
+    if (data.error) throw new Error("The API could not return a joke.");
+
+    renderJoke(data);
+    copyButton.disabled = false;
+    setStatus("Here is your joke!");
+  } catch (error) {
+    jokeElement.innerHTML = '<p class="loading">Could not load a joke. Please try again.</p>';
+    setStatus(error.message);
+  } finally {
+    newJokeButton.disabled = false;
+  }
+}
+
+async function copyJoke() {
+  if (!currentJoke) return;
+
+  try {
+    await navigator.clipboard.writeText(currentJoke);
+    setStatus("Joke copied to clipboard!");
+  } catch {
+    setStatus("Copy failed. Please select the joke manually.");
+  }
+}
+
+newJokeButton.addEventListener("click", getRandomJoke);
+copyButton.addEventListener("click", copyJoke);
+getRandomJoke();
